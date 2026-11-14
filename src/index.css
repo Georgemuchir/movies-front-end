@@ -595,3 +595,37 @@ img { display: block; }
 }
 .drawer__bottom button:hover { color: var(--text); }
 .play-ring__runtime--resume { color: var(--gold); }
+
+/* Accounts on the Library page */
+.account-list { list-style: none; padding: 0; margin: 0 0 20px; border-top: 1px solid var(--border); }
+.account-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.account-list__email { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 0.9rem; }
+.account-list__role { color: var(--muted); font-size: 0.6rem; }
+.account-list__role--admin { color: var(--gold); }
+.account-list__you { font-size: 0.75rem; min-width: 52px; text-align: right; }
+.account-list .text-link { min-width: 52px; justify-content: flex-end; }
+.panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.panel { padding: 20px; border-radius: 6px; background: var(--surface); border: 1px solid var(--border); }
+.panel__title { margin: 0 0 6px; font-size: 1rem; }
+.panel__text { margin: 0 0 14px; font-size: 0.82rem; }
+.inline-form { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.inline-form input:not([type="checkbox"]), .invite-link input {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+.inline-form input:focus, .invite-link input:focus { border-color: var(--gold); }
+.invite-link { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.invite-link p { flex-basis: 100%; margin: 0; font-size: 0.78rem; }
+.auth-intro { margin: -8px 0 4px; }
+.auth-note--left { text-align: left; margin-top: -8px; }

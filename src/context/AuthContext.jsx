@@ -35,6 +35,12 @@ export function AuthProvider({ children }) {
         setUser(u);
         return u;
       },
+      acceptInvite: async (token, email, password) => {
+        const u = await client.acceptInvite(token, email, password);
+        setProfile(null);
+        setUser(u);
+        return u;
+      },
       logout: async () => {
         await client.logout().catch(() => {});
         clear();

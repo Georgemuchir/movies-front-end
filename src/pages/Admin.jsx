@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fixMatch, getUnmatched, refreshRatings, scanLibrary, searchMovies } from "../api/client.js";
+import Accounts from "../components/Accounts.jsx";
 import { posterUrl } from "../theme.js";
 
 function FixMatch({ movie, onFixed }) {
@@ -61,7 +62,7 @@ export default function Admin() {
 
   return (
     <div className="page-top admin">
-      <h1>Library</h1>
+      <h1>Library &amp; accounts</h1>
       <div className="actions">
         <button className="btn btn--primary" disabled={busy} onClick={() =>
           run("Scanning", scanLibrary, (r) =>
@@ -72,6 +73,8 @@ export default function Admin() {
         }>Refresh IMDb ratings</button>
       </div>
       {status && <p className="muted">{status}</p>}
+
+      <Accounts />
 
       <h2 className="label">Unmatched files</h2>
       {unmatched.length ? (

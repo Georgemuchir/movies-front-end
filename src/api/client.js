@@ -40,7 +40,7 @@ api.interceptors.response.use(
   (r) => r,
   (error) => {
     const url = error.config?.url || "";
-    if (error.response?.status === 401 && !url.startsWith("/auth/")) onUnauthorized();
+    if (error.response?.status === 401 && !url.startsWith("/auth/") && !url.startsWith("/invites/")) onUnauthorized();
     return Promise.reject(error);
   }
 );
@@ -88,6 +88,15 @@ export const getUnmatched = () => api.get("/admin/unmatched").then((r) => r.data
 export const fixMatch = (id, tmdbId) =>
   api.post(`/admin/movies/${id}/match`, { tmdb_id: tmdbId }).then((r) => r.data);
 export const refreshRatings = () => api.post("/admin/ratings/refresh").then((r) => r.data);
+
+export const getAccounts = () => api.get("/admin/users").then((r) => r.data.results);
+export const addAccount = (email, password, admin) =>
+  api.post("/admin/users", { email, password, admin }).then((r) => r.data);
+export const removeAccount = (id) => api.delete(`/admin/users/${id}`);
+export const createInvite = (email) => api.post("/admin/invites", { email }).then((r) => r.data);
+export const checkInvite = (token) => api.get(`/invites/${token}`).then((r) => r.data);
+export const acceptInvite = (token, email, password) =>
+  api.post(`/invites/${token}`, { email, password }).then((r) => r.data.user);
 
 export const streamUrl = (id) => `/api/stream/${id}`;
 

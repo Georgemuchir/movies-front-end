@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
 import Admin from "./pages/Admin.jsx";
 import Home from "./pages/Home.jsx";
+import Invite from "./pages/Invite.jsx";
 import Login from "./pages/Login.jsx";
 import MovieDetail from "./pages/MovieDetail.jsx";
 import Player from "./pages/Player.jsx";
@@ -45,6 +46,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/invite/:token" element={<Invite />} />
       <Route element={<RequireUser />}>
         <Route path="/profiles" element={<Profiles />} />
       </Route>
