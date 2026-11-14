@@ -55,6 +55,7 @@ export const getProfiles = () => api.get("/profiles").then((r) => r.data.results
 export const addProfile = (name, isKid) => api.post("/profiles", { name, is_kid: isKid }).then((r) => r.data);
 
 export const getRows = () => api.get("/movies/rows").then((r) => r.data);
+export const getFreeElsewhere = () => api.get("/movies/free").then((r) => r.data.results);
 export const getMovie = (id) => api.get(`/movies/${id}`).then((r) => r.data);
 export const getSimilar = (id) => api.get(`/movies/${id}/similar`).then((r) => r.data.results);
 export const getTmdbMovie = (tmdbId) => api.get(`/tmdb/${tmdbId}`).then((r) => r.data);

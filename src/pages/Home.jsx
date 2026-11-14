@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getRows } from "../api/client.js";
+import { getFreeElsewhere, getRows } from "../api/client.js";
 import PosterRow from "../components/PosterRow.jsx";
 import Showcase from "../components/Showcase.jsx";
 import TrailerModal from "../components/TrailerModal.jsx";
@@ -9,9 +9,11 @@ export default function Home() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [free, setFree] = useState([]);
 
   useEffect(() => {
     getRows().then(setData).catch(() => setError("Couldn't reach the server. Is Flask running?"));
+    getFreeElsewhere().then(setFree).catch(() => {});
   }, []);
 
   if (error) return <p className="page-message">{error}</p>;
@@ -25,6 +27,10 @@ export default function Home() {
     );
 
   const [first, ...rest] = data.rows;
+  const lower = data.hero ? rest : data.rows;
+  // Free-elsewhere movies go after the first row of your own films.
+  const freeRow = free.length ? [{ title: "Free to watch on other apps", movies: free }] : [];
+  const rows = [...lower.slice(0, 1), ...freeRow, ...lower.slice(1)];
   return (
     <>
       {data.hero ? (
@@ -38,7 +44,7 @@ export default function Home() {
         <div className="page-top" />
       )}
       <div className="rows">
-        {(data.hero ? rest : data.rows).map((row) => (
+        {rows.map((row) => (
           <PosterRow key={row.title} title={row.title} movies={row.movies} />
         ))}
       </div>

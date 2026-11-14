@@ -6,7 +6,12 @@ import TrailerModal from "../components/TrailerModal.jsx";
 import { logoUrl, posterUrl } from "../theme.js";
 
 function Providers({ providers, region }) {
-  const groups = [["Stream", providers.stream], ["Rent", providers.rent], ["Buy", providers.buy]].filter(
+  const groups = [
+    ["Free (with ads)", providers.free || []],
+    ["Subscription", providers.stream],
+    ["Rent", providers.rent],
+    ["Buy", providers.buy],
+  ].filter(
     ([, list]) => list.length
   );
   if (!groups.length) return <p className="muted">Not available to stream, rent or buy in {region} right now.</p>;
@@ -73,7 +78,13 @@ export default function MovieDetail({ external = false }) {
         {!movie.in_library && (
           <section>
             <h3 className="label">Where to watch</h3>
+            {movie.providers.free?.length > 0 && movie.providers.link && (
+              <a className="btn btn--primary watch-free" href={movie.providers.link} target="_blank" rel="noreferrer">
+                Watch free on {movie.providers.free[0].name} ↗
+              </a>
+            )}
             <Providers providers={movie.providers} region={movie.region} />
+            <p className="muted providers__note">Opens the movie's page with links to each app. Watching happens in that app.</p>
           </section>
         )}
         {movie.cast?.length > 0 && (

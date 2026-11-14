@@ -631,3 +631,6 @@ img { display: block; }
 .auth-note--left { text-align: left; margin-top: -8px; }
 .panel__text a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 2px; }
 .admin > .panel { margin: 8px 0 12px; max-width: 720px; }
+.badge-external--free { background: rgba(233, 185, 73, 0.9); color: var(--bg); backdrop-filter: none; }
+.watch-free { display: inline-block; margin-bottom: 22px; }
+.providers__note { font-size: 0.75rem; margin: 16px 0 0; }

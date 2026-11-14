@@ -13,7 +13,11 @@ export default function PosterCard({ movie, small = false }) {
         ) : (
           <div className="poster-fallback">{movie.title}</div>
         )}
-        {!movie.in_library && <span className="badge-external">Not in library</span>}
+        {movie.free_on ? (
+          <span className="badge-external badge-external--free">Free · {movie.free_on}</span>
+        ) : (
+          !movie.in_library && <span className="badge-external">Not in library</span>
+        )}
         {movie.progress > 0 && (
           <div className="poster-progress"><div style={{ width: `${movie.progress * 100}%` }} /></div>
         )}
