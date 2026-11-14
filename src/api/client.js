@@ -87,6 +87,7 @@ export const scanLibrary = () => api.post("/admin/scan").then((r) => r.data);
 export const getUnmatched = () => api.get("/admin/unmatched").then((r) => r.data.results);
 export const fixMatch = (id, tmdbId) =>
   api.post(`/admin/movies/${id}/match`, { tmdb_id: tmdbId }).then((r) => r.data);
+export const addFromArchive = (link) => api.post("/admin/archive", { link }).then((r) => r.data);
 export const refreshRatings = () => api.post("/admin/ratings/refresh").then((r) => r.data);
 
 export const getAccounts = () => api.get("/admin/users").then((r) => r.data.results);
